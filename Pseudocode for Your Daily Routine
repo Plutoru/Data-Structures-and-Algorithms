@@ -1,0 +1,31 @@
+BEGIN
+    # Step 1: Check Supplies
+    IF coffee_beans < required_amount OR water < required_amount THEN
+        DISPLAY "Check supplies: Refill water or coffee beans."
+        EXIT
+    END IF
+
+    # Step 2: Prepare Coffee Maker
+    IF coffee_maker IS NOT clean THEN
+        CLEAN coffee_maker
+    END IF
+    FILL water_reservoir WITH required_amount OF water
+    ADD required_amount OF coffee_beans TO filter
+
+    # Step 3: Brew Coffee
+    START coffee_maker
+    WAIT UNTIL brewing_process IS complete
+
+    # Step 4: Serve Coffee
+    IF coffee_maker IS ready THEN
+        POUR coffee INTO mug
+    ELSE
+        DISPLAY "Brewing not complete."
+    END IF
+
+    # Step 5: Clean Up
+    CLEAN coffee_maker
+    CLEAN mug AND any_used_utensils
+
+    DISPLAY "Morning coffee is ready!"
+END
